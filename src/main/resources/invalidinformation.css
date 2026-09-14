@@ -1,0 +1,14 @@
+/* 
+    Created on : Sep 14, 2026, 6:44:04 p.m.
+    Author     : Daniel Haddadeen
+*/
+
+.text-field {
+    -fx-background-color: #ef4444, #fee2e2;
+    -fx-background-insets: 0, 2;
+    -fx-effect: dropshadow(three-pass-box, rgba(239, 68, 68, 0.25), 8, 0, 0, 0);
+}
+
+.text-field:focused {
+    -fx-background-color: #ef4444, white;
+}
