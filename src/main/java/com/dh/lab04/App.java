@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+// GitHub Repository Link: https://github.com/danielh281/Lab-04/
 
 /**
  * JavaFX App
