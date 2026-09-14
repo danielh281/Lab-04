@@ -3,9 +3,12 @@ package com.dh.lab04;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
@@ -15,21 +18,58 @@ import javafx.scene.layout.GridPane;
  */
 public class ExpenseCalculator {
     private GridPane root;
+    private Label totalExpenses;
+    private Label totalAllowedExpenses;
+    private Label excessExpenses;
+    private Label savedExpenses;
     private Button calculateButton;
     
     public ExpenseCalculator() {
         root = new GridPane(1, 5);
+        totalExpenses = new Label();
+        totalAllowedExpenses = new Label();
+        excessExpenses = new Label();
+        savedExpenses = new Label();
         calculateButton = new Button("Calculate Expenses");
         
+        // Update the label text for all expenses
         calculateButton.setOnAction(e -> {
             List<Double> expenses = calculateExpenses();
+            
+            totalExpenses.setText(String.format("Total expenses incurred by the businessperson: $%.2f", expenses.get(0)));
+            totalAllowedExpenses.setText(String.format("Total allowable expenses for the trip: $%.2f", expenses.get(1)));
+            excessExpenses.setText(String.format("Excess expenses that must be paid by the businessperson: $%.2f", expenses.get(2)));
+            savedExpenses.setText(String.format("Saved expenses: $%.2f", expenses.get(3)));
             
             System.out.println(expenses);
         });
         
+        // Center all the labels inside of their grids
+        GridPane.setHalignment(totalExpenses, HPos.CENTER);
+        GridPane.setValignment(totalExpenses, VPos.CENTER);
+        
+        GridPane.setHalignment(totalAllowedExpenses, HPos.CENTER);
+        GridPane.setValignment(totalAllowedExpenses, VPos.CENTER);
+
+        GridPane.setHalignment(excessExpenses, HPos.CENTER);
+        GridPane.setValignment(excessExpenses, VPos.CENTER);
+
+        GridPane.setHalignment(savedExpenses, HPos.CENTER);
+        GridPane.setValignment(savedExpenses, VPos.CENTER);
+        
+        GridPane.setHalignment(calculateButton, HPos.CENTER);
+        GridPane.setValignment(calculateButton, VPos.CENTER);
+        
+        // Put the grid at the bottom center and set padding
         root.setAlignment(Pos.BOTTOM_CENTER);
         root.setVgap(5);
         root.setPadding(new Insets(20));
+        
+        // Adding all the labels and button to the grid
+        root.add(totalExpenses, 0, 0);
+        root.add(totalAllowedExpenses, 0, 1);
+        root.add(excessExpenses, 0, 2);
+        root.add(savedExpenses, 0, 3);
         root.add(calculateButton, 0, 4);
     }
     
