@@ -22,14 +22,16 @@ public class ExpenseCalculator {
     private Label totalAllowedExpenses;
     private Label excessExpenses;
     private Label savedExpenses;
+    private Button clearButton;
     private Button calculateButton;
     
     public ExpenseCalculator() {
-        root = new GridPane(1, 5);
+        root = new GridPane(1, 6);
         totalExpenses = new Label();
         totalAllowedExpenses = new Label();
         excessExpenses = new Label();
         savedExpenses = new Label();
+        clearButton = new Button("Clear");
         calculateButton = new Button("Calculate Expenses");
         
         // Update the label text for all expenses
@@ -42,6 +44,18 @@ public class ExpenseCalculator {
             savedExpenses.setText(String.format("Saved expenses: $%.2f", expenses.get(3)));
             
             System.out.println(expenses);
+        });
+        
+        // Clear all fields and labels
+        clearButton.setOnAction(e -> {
+            totalExpenses.setText("");
+            totalAllowedExpenses.setText("");
+            excessExpenses.setText("");
+            savedExpenses.setText("");
+            
+            App.getUserInformation().getInputFields().forEach((key, value) -> {
+                value.clear();
+            });
         });
         
         // Center all the labels inside of their grids
@@ -57,6 +71,9 @@ public class ExpenseCalculator {
         GridPane.setHalignment(savedExpenses, HPos.CENTER);
         GridPane.setValignment(savedExpenses, VPos.CENTER);
         
+        GridPane.setHalignment(clearButton, HPos.CENTER);
+        GridPane.setValignment(clearButton, VPos.CENTER);
+        
         GridPane.setHalignment(calculateButton, HPos.CENTER);
         GridPane.setValignment(calculateButton, VPos.CENTER);
         
@@ -70,7 +87,8 @@ public class ExpenseCalculator {
         root.add(totalAllowedExpenses, 0, 1);
         root.add(excessExpenses, 0, 2);
         root.add(savedExpenses, 0, 3);
-        root.add(calculateButton, 0, 4);
+        root.add(clearButton, 0, 4);
+        root.add(calculateButton, 0, 5);
     }
     
     /**
