@@ -36,7 +36,7 @@ public class InputValidator {
             // Attempt to convert input to integer IF the input is for days
             if (informationField.equals(InformationField.DAYS)) {
                 try {
-                    Integer value = Integer.valueOf(input);
+                    Integer.valueOf(input);
                 } catch(NumberFormatException e) {
                     invalidFields.add(informationField);
                 }
@@ -46,7 +46,7 @@ public class InputValidator {
             
             // Attempt to convert input to double otherwise
             try {
-                Double value = Double.valueOf(input);
+                Double.valueOf(input);
             } catch(NumberFormatException e) {
                 invalidFields.add(informationField);
             }
