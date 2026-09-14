@@ -14,7 +14,7 @@ import javafx.scene.layout.GridPane;
 
 /**
  *
- * @author danie
+ * @author Daniel Haddadeen
  */
 public class ExpenseCalculator {
     private GridPane root;
@@ -31,19 +31,23 @@ public class ExpenseCalculator {
         totalAllowedExpenses = new Label();
         excessExpenses = new Label();
         savedExpenses = new Label();
+        
         clearButton = new Button("Clear");
+        clearButton.setId("clear");
+        
         calculateButton = new Button("Calculate Expenses");
+        calculateButton.setId("calculate");
         
         // Update the label text for all expenses
         calculateButton.setOnAction(e -> {
             List<Double> expenses = calculateExpenses();
             
-            totalExpenses.setText(String.format("Total expenses incurred by the businessperson: $%.2f", expenses.get(0)));
-            totalAllowedExpenses.setText(String.format("Total allowable expenses for the trip: $%.2f", expenses.get(1)));
-            excessExpenses.setText(String.format("Excess expenses that must be paid by the businessperson: $%.2f", expenses.get(2)));
-            savedExpenses.setText(String.format("Saved expenses: $%.2f", expenses.get(3)));
-            
-            System.out.println(expenses);
+            if (expenses != null) {
+                totalExpenses.setText(String.format("Total expenses incurred by the businessperson: $%.2f", expenses.get(0)));
+                totalAllowedExpenses.setText(String.format("Total allowable expenses for the trip: $%.2f", expenses.get(1)));
+                excessExpenses.setText(String.format("Excess expenses that must be paid by the businessperson: $%.2f", expenses.get(2)));
+                savedExpenses.setText(String.format("Saved expenses: $%.2f", expenses.get(3)));
+            }
         });
         
         // Clear all fields and labels

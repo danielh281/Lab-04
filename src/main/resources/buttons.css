@@ -1,0 +1,28 @@
+/* 
+    Created on : Sep 14, 2026, 5:25:52 p.m.
+    Author     : Daniel Haddadeen
+*/
+
+#clear {
+    -fx-background-color: #ef4444;
+}
+
+#clear:hover {
+    -fx-background-color: #dc2626;
+}
+
+#clear:armed {
+    -fx-background-color: #b91c1c;
+}
+
+#calculate {
+    -fx-background-color: #8dfc9c;
+}
+
+#calculate:hover {
+    -fx-background-color: #5fd970;
+}
+
+#calculate:armed {
+    -fx-background-color: #2d913b;
+}

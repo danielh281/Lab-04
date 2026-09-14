@@ -1,11 +1,8 @@
 package com.dh.lab04;
 
 import javafx.application.Application;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 
@@ -26,6 +23,10 @@ public class App extends Application {
         root.setBottom(expenseCalculator.getRoot());
         
         Scene scene = new Scene(root, 640, 480);
+        
+        scene.getStylesheets().add("default.css");
+        scene.getStylesheets().add("buttons.css");
+        
         stage.setScene(scene);
         stage.setTitle("Trip Expenses Calculator");
         stage.show();

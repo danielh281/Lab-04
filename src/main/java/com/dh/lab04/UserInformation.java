@@ -1,12 +1,9 @@
 package com.dh.lab04;
 
 import java.util.Map;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.geometry.VPos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
