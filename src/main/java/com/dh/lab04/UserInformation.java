@@ -17,7 +17,6 @@ import javafx.scene.layout.GridPane;
  */
 public class UserInformation {
     private GridPane root;
-    
     private Map<InformationField, TextField> inputFields = new LinkedHashMap<>();
     
     public UserInformation() {
