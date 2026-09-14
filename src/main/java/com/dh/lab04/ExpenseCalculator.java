@@ -24,6 +24,7 @@ public class ExpenseCalculator {
     private Label savedExpenses;
     private Button clearButton;
     private Button calculateButton;
+    private Label error;
     
     public ExpenseCalculator() {
         root = new GridPane(1, 6);
@@ -37,6 +38,8 @@ public class ExpenseCalculator {
         
         calculateButton = new Button("Calculate Expenses");
         calculateButton.setId("calculate");
+        
+        error = new Label();
         
         // Update the label text for all expenses
         calculateButton.setOnAction(e -> {
@@ -59,6 +62,7 @@ public class ExpenseCalculator {
             
             App.getUserInformation().getInputFields().forEach((key, value) -> {
                 value.clear();
+                value.getStylesheets().remove("invalidinformation.css");
             });
         });
         
@@ -100,19 +104,31 @@ public class ExpenseCalculator {
      * @return List containing in order; Total Expenses Incurred, Total Allowed Expenses, Excess Expenses and Saved Expenses
      */
     private static List<Double> calculateExpenses() {
+        UserInformation userInformation = App.getUserInformation();
+        Map<InformationField, TextField> inputFields = userInformation.getInputFields();
         List<InformationField> invalidFields = InputValidator.checkFieldsValid();
         
-        // If there is invalid fields then do not calculate
+        // Remove all previous errors
+        for (TextField field : inputFields.values()) {
+            field.getStylesheets().remove("invalidinformation.css");
+        }
+        
+        // If there is invalid fields then do not calculate and show the invalid field
         if (!invalidFields.isEmpty()) {
+            for (InformationField informationField : invalidFields) {
+                TextField inputField = inputFields.get(informationField);
+                
+                if (!inputField.getStylesheets().contains("invalidinformation.css")) {
+                    inputField.getStylesheets().add("invalidinformation.css");
+                }
+            }
+            
             return null;
         }
         
         Map<InformationField, Number> userInput = InputValidator.getUserInput();
         
         List<Double> expenses = new ArrayList<>();
-        
-        UserInformation userInformation = App.getUserInformation();
-        Map<InformationField, TextField> inputFields = userInformation.getInputFields();
         
         double totalExpenses = 0;
         double totalAllowedExpenses = 0;
