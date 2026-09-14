@@ -27,7 +27,7 @@ public class InputValidator {
             String input = inputField.getText();
             
             // Removes spaces at start and end
-            input.trim();
+            input = input.trim();
             
             // If the field is empty but its optional then skip to the next
             if (informationField.isOptional && input.isEmpty()) {
@@ -71,7 +71,7 @@ public class InputValidator {
             String input = inputField.getText();
             
             // Removes spaces at start and end
-            input.trim();
+            input = input.trim();
 
             // Default to 0.0 for optional fields with no input
             if (informationField.isOptional && input.isEmpty()) {
@@ -79,7 +79,14 @@ public class InputValidator {
                 continue;
             }
             
+            if (informationField.equals(InformationField.DAYS)) {
+                userInput.put(informationField, Integer.valueOf(input));
+                continue;
+            }
+            
             userInput.put(informationField, Double.valueOf(input));
         }
+        
+        return userInput;
     }
 }
